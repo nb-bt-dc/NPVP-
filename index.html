@@ -7,378 +7,242 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0c0c0f;
-  --s1:#13131a;
-  --s2:#1a1a24;
-  --s3:#20202c;
-  --b:#252535;
-  --acc:#6c63ff;
-  --acc2:#a78bfa;
-  --gold:#f59e0b;
-  --silver:#94a3b8;
-  --bronze:#cd7f32;
-  --green:#22d3ee;
-  --t:#e2e8f0;
-  --m:#64648a;
-}
+:root{--bg:#0c0c0f;--s1:#13131a;--s2:#1a1a24;--b:#252535;--acc:#6c63ff;--acc2:#a78bfa;--gold:#f59e0b;--silver:#94a3b8;--bronze:#cd7f32;--t:#e2e8f0;--m:#64648a}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--t);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden}
-
-/* scrollbar */
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--b);border-radius:3px}
-
-/* ═══ PARTICLES ════════════════════════════ */
-#cvs{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5}
-
-/* ═══ HEADER ═══════════════════════════════ */
-header{
-  position:sticky;top:0;z-index:50;
-  background:rgba(12,12,15,.85);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(108,99,255,.2);
-  padding:0 40px;
-  display:flex;align-items:center;height:62px;gap:0;
-}
-.logo{
-  font-size:15px;font-weight:900;letter-spacing:3px;
-  color:#fff;text-decoration:none;
-  background:linear-gradient(135deg,var(--gold),#f97316);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  padding:6px 14px;border:1.5px solid rgba(245,158,11,.35);
-  border-radius:8px;margin-right:28px;white-space:nowrap;
-  position:relative;overflow:hidden;
-}
-.logo::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
-  animation:shimmer 3s infinite;
-}
-@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
-
-.nav-tabs{display:flex;gap:2px;flex:1;overflow-x:auto;scrollbar-width:none}
-.nav-tabs::-webkit-scrollbar{display:none}
-.ntab{
-  display:flex;align-items:center;gap:7px;
-  padding:8px 16px;border-radius:8px;cursor:pointer;
-  border:none;background:transparent;
-  color:var(--m);font-size:13px;font-weight:600;
-  transition:all .18s;white-space:nowrap;font-family:inherit;
-  position:relative;
-}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--b);border-radius:3px}
+#cvs{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.4}
+header{position:sticky;top:0;z-index:50;background:rgba(12,12,15,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(108,99,255,.15);padding:0 32px;display:flex;align-items:center;height:60px;gap:0}
+.logo{font-size:13px;font-weight:900;letter-spacing:3px;background:linear-gradient(135deg,var(--gold),#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;padding:5px 13px;border:1.5px solid rgba(245,158,11,.3);border-radius:8px;margin-right:22px;white-space:nowrap;cursor:pointer;position:relative;overflow:hidden}
+.logo::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent);animation:sh 3s infinite}
+@keyframes sh{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.ntabs{display:flex;gap:2px;flex:1;overflow-x:auto;scrollbar-width:none}
+.ntabs::-webkit-scrollbar{display:none}
+.ntab{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;cursor:pointer;border:none;background:transparent;color:var(--m);font-size:13px;font-weight:600;transition:all .18s;white-space:nowrap;font-family:inherit;position:relative}
 .ntab:hover{color:#fff;background:rgba(255,255,255,.05)}
 .ntab.on{color:#fff;background:rgba(108,99,255,.18)}
-.ntab.on::after{
-  content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
-  width:70%;height:2px;border-radius:2px;
-  background:linear-gradient(90deg,var(--acc),var(--acc2));
-  box-shadow:0 0 10px var(--acc);
-}
-.ntab img{width:18px;height:18px;object-fit:contain;filter:brightness(.55);transition:.18s}
+.ntab.on::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:60%;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--acc),var(--acc2));box-shadow:0 0 8px var(--acc)}
+.ntab img{width:17px;height:17px;object-fit:contain;filter:brightness(.5);transition:.18s}
 .ntab:hover img,.ntab.on img{filter:brightness(1) saturate(1.3)}
-.ntab .em{font-size:17px}
-
-.h-right{display:flex;gap:8px;align-items:center;margin-left:16px}
-.h-btn{
-  display:flex;align-items:center;gap:6px;
-  padding:7px 14px;border-radius:8px;cursor:pointer;
-  border:1px solid var(--b);background:var(--s2);
-  color:var(--m);font-size:12px;font-weight:700;
-  font-family:inherit;transition:all .15s;white-space:nowrap;
-}
-.h-btn:hover{color:#fff;border-color:var(--acc);background:rgba(108,99,255,.12)}
-.h-btn.discord{border-color:rgba(88,101,242,.4);color:#8899ff;background:rgba(88,101,242,.1);text-decoration:none}
-.h-btn.discord:hover{background:rgba(88,101,242,.2)}
-
-/* ═══ MAIN ══════════════════════════════════ */
-.main{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:28px 24px}
-
-/* ═══ SEARCH ════════════════════════════════ */
-.search-row{display:flex;gap:12px;margin-bottom:22px;align-items:center}
-.search-wrap{position:relative;flex:1}
-.search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--m)}
-.search-input{
-  width:100%;background:var(--s1);border:1px solid var(--b);
-  border-radius:11px;padding:12px 16px 12px 42px;
-  color:#fff;font-size:14px;font-family:inherit;outline:none;
-  transition:border-color .2s,box-shadow .2s;
-}
-.search-input:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(108,99,255,.15)}
-.search-input::placeholder{color:var(--m)}
-.count-chip{
-  background:var(--s1);border:1px solid var(--b);
-  color:var(--m);padding:10px 16px;border-radius:10px;
-  font-size:13px;font-weight:600;white-space:nowrap;
-}
-.live-dot{display:inline-block;width:7px;height:7px;background:#22d3ee;border-radius:50%;
-  animation:blink 1.4s ease-in-out infinite;margin-right:5px}
-@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
-
-/* ═══ PLAYER LIST ═══════════════════════════ */
-.plist{display:flex;flex-direction:column;gap:7px}
-
-.pcard{
-  display:grid;grid-template-columns:62px 56px 1fr auto;
-  align-items:center;gap:16px;
-  background:var(--s1);border:1px solid var(--b);
-  border-radius:13px;padding:14px 20px;
-  transition:all .2s;cursor:default;
-  animation:rowIn .35s ease both;
-  position:relative;overflow:hidden;
-}
-.pcard::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:transparent;border-radius:3px 0 0 3px;transition:.2s;
-}
-.pcard:hover{border-color:rgba(108,99,255,.35);background:var(--s2);transform:translateX(3px)}
+.ntab .em{font-size:16px}
+.h-right{display:flex;gap:7px;align-items:center;margin-left:10px}
+.hbtn{display:flex;align-items:center;gap:5px;padding:7px 13px;border-radius:8px;cursor:pointer;border:1px solid var(--b);background:var(--s1);color:var(--m);font-size:12px;font-weight:700;font-family:inherit;transition:all .15s;white-space:nowrap;text-decoration:none}
+.hbtn:hover{color:#fff;border-color:var(--acc);background:rgba(108,99,255,.12)}
+.hbtn.dc{border-color:rgba(88,101,242,.4);color:#8899ff;background:rgba(88,101,242,.1)}
+.hbtn.dc:hover{background:rgba(88,101,242,.2)}
+.main{position:relative;z-index:1;max-width:1060px;margin:0 auto;padding:24px 22px}
+.srow{display:flex;gap:10px;margin-bottom:18px;align-items:center}
+.swrap{position:relative;flex:1}
+.swrap svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--m)}
+.sinp{width:100%;background:var(--s1);border:1px solid var(--b);border-radius:10px;padding:11px 15px 11px 40px;color:#fff;font-size:14px;font-family:inherit;outline:none;transition:.2s}
+.sinp:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(108,99,255,.12)}
+.sinp::placeholder{color:var(--m)}
+.chip{background:var(--s1);border:1px solid var(--b);color:var(--m);padding:10px 14px;border-radius:9px;font-size:12px;font-weight:600;white-space:nowrap}
+.ldot{display:inline-block;width:6px;height:6px;background:#22d3ee;border-radius:50%;animation:bk 1.4s ease-in-out infinite;margin-right:4px}
+@keyframes bk{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
+.plist{display:flex;flex-direction:column;gap:6px}
+.pcard{display:grid;grid-template-columns:56px 50px 1fr auto;align-items:center;gap:14px;background:var(--s1);border:1px solid var(--b);border-radius:12px;padding:13px 18px;transition:all .2s;cursor:pointer;animation:ri .35s ease both;position:relative;overflow:hidden}
+.pcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px;background:transparent;transition:.2s}
+.pcard:hover{border-color:rgba(108,99,255,.4);background:var(--s2);transform:translateX(4px);box-shadow:0 4px 24px rgba(0,0,0,.3)}
 .pcard:hover::before{background:linear-gradient(180deg,var(--acc),var(--acc2))}
-
-.pcard.top1{border-color:rgba(245,158,11,.35);background:linear-gradient(90deg,rgba(245,158,11,.06),var(--s1) 60%)}
+.pcard.top1{border-color:rgba(245,158,11,.4);background:linear-gradient(90deg,rgba(245,158,11,.07),var(--s1) 55%)}
 .pcard.top1::before{background:linear-gradient(180deg,var(--gold),#f97316)}
-.pcard.top2{border-color:rgba(148,163,184,.25);background:linear-gradient(90deg,rgba(148,163,184,.04),var(--s1) 60%)}
+.pcard.top2{border-color:rgba(148,163,184,.25);background:linear-gradient(90deg,rgba(148,163,184,.05),var(--s1) 55%)}
 .pcard.top2::before{background:linear-gradient(180deg,var(--silver),#cbd5e1)}
-.pcard.top3{border-color:rgba(205,127,50,.3);background:linear-gradient(90deg,rgba(205,127,50,.05),var(--s1) 60%)}
+.pcard.top3{border-color:rgba(205,127,50,.3);background:linear-gradient(90deg,rgba(205,127,50,.06),var(--s1) 55%)}
 .pcard.top3::before{background:linear-gradient(180deg,var(--bronze),#d97706)}
-
-@keyframes rowIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.pcard:nth-child(1){animation-delay:.03s}.pcard:nth-child(2){animation-delay:.06s}
-.pcard:nth-child(3){animation-delay:.09s}.pcard:nth-child(4){animation-delay:.12s}
-.pcard:nth-child(5){animation-delay:.15s}.pcard:nth-child(6){animation-delay:.18s}
-.pcard:nth-child(7){animation-delay:.21s}.pcard:nth-child(8){animation-delay:.24s}
-
-/* rank */
-.rank{text-align:center;font-size:20px;font-weight:900;color:var(--m)}
-.rank.g{font-size:28px;filter:drop-shadow(0 0 10px var(--gold));animation:float 2.5s ease-in-out infinite}
-.rank.s{font-size:24px;filter:drop-shadow(0 0 8px var(--silver))}
-.rank.b{font-size:24px;filter:drop-shadow(0 0 8px var(--bronze))}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-
-/* avatar */
-.avatar img{
-  width:52px;height:52px;border-radius:9px;display:block;
-  image-rendering:pixelated;
-  border:2px solid rgba(255,255,255,.06);
-  transition:all .2s;
-}
-.pcard:hover .avatar img{border-color:rgba(108,99,255,.5);transform:scale(1.04)}
-.pcard.top1 .avatar img{border-color:rgba(245,158,11,.4)}
-.pcard.top2 .avatar img{border-color:rgba(148,163,184,.35)}
-.pcard.top3 .avatar img{border-color:rgba(205,127,50,.4)}
-
-/* info */
-.pname{font-size:16px;font-weight:700;color:#fff;letter-spacing:-.2px}
-.pmeta{display:flex;align-items:center;gap:8px;margin-top:5px;flex-wrap:wrap}
-.ptitle{font-size:12px;color:var(--m);display:flex;align-items:center;gap:4px}
-.ppill{
-  font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;
-}
-.ppill.pts{background:rgba(108,99,255,.14);border:1px solid rgba(108,99,255,.28);color:#a78bfa}
-
-/* tiers */
-.ptiers{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;max-width:380px}
-.tbadge{display:flex;flex-direction:column;align-items:center;gap:2px;transition:.15s}
-.tbadge:hover{transform:translateY(-3px) scale(1.1)}
-.ticon{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.ticon img{width:18px;height:18px;object-fit:contain}
-.tlbl{font-size:9px;font-weight:800}
-
-/* tier styles */
-.t-ht1,.t-lt1{background:rgba(251,146,60,.18);border:1px solid rgba(251,146,60,.45);box-shadow:0 0 10px rgba(251,146,60,.15)}
-.t-ht2,.t-lt2{background:rgba(250,204,21,.15);border:1px solid rgba(250,204,21,.4)}
-.t-ht3,.t-lt3{background:rgba(74,222,128,.14);border:1px solid rgba(74,222,128,.35)}
-.t-ht4,.t-lt4{background:rgba(34,211,238,.14);border:1px solid rgba(34,211,238,.32)}
-.t-ht5,.t-lt5{background:rgba(100,116,139,.12);border:1px solid rgba(100,116,139,.25)}
-.c-ht1,.c-lt1{color:#fb923c}
-.c-ht2,.c-lt2{color:#facc15}
-.c-ht3,.c-lt3{color:#4ade80}
-.c-ht4,.c-lt4{color:#22d3ee}
-.c-ht5,.c-lt5{color:#64748b}
-
-/* ═══ LOADING / EMPTY ═══════════════════════ */
-.loading,.empty{
-  display:flex;flex-direction:column;align-items:center;
-  justify-content:center;padding:80px 20px;
-  color:var(--m);gap:14px;font-size:14px;
-}
-.spin{
-  width:40px;height:40px;border-radius:50%;
-  border:3px solid var(--b);border-top-color:var(--acc);
-  animation:spin .7s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* ═══ PAGINATION ════════════════════════════ */
-.pag{display:flex;justify-content:center;gap:5px;margin-top:24px;flex-wrap:wrap}
-.pgb{
-  background:var(--s1);border:1px solid var(--b);color:var(--m);
-  padding:8px 15px;border-radius:8px;cursor:pointer;
-  font-size:13px;font-weight:700;font-family:inherit;min-width:38px;transition:.15s;
-}
-.pgb:hover:not([disabled]){background:var(--acc);color:#fff;border-color:var(--acc);
-  transform:translateY(-1px);box-shadow:0 4px 14px rgba(108,99,255,.4)}
-.pgb.on{background:var(--acc);color:#fff;border-color:var(--acc);box-shadow:0 4px 14px rgba(108,99,255,.3)}
+@keyframes ri{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.pcard:nth-child(1){animation-delay:.02s}.pcard:nth-child(2){animation-delay:.05s}.pcard:nth-child(3){animation-delay:.08s}
+.pcard:nth-child(4){animation-delay:.11s}.pcard:nth-child(5){animation-delay:.14s}.pcard:nth-child(6){animation-delay:.17s}
+.rnk{text-align:center;font-size:19px;font-weight:900;color:var(--m)}
+.rnk.g{font-size:26px;filter:drop-shadow(0 0 10px var(--gold));animation:fl 2.5s ease-in-out infinite}
+.rnk.s{font-size:22px;filter:drop-shadow(0 0 8px var(--silver))}
+.rnk.b{font-size:22px;filter:drop-shadow(0 0 8px var(--bronze))}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.avt img{width:48px;height:48px;border-radius:8px;display:block;image-rendering:pixelated;border:2px solid rgba(255,255,255,.06);transition:.2s}
+.pcard:hover .avt img{border-color:rgba(108,99,255,.5);transform:scale(1.05)}
+.pcard.top1 .avt img{border-color:rgba(245,158,11,.45)}.pcard.top2 .avt img{border-color:rgba(148,163,184,.35)}.pcard.top3 .avt img{border-color:rgba(205,127,50,.4)}
+.pnm{font-size:16px;font-weight:700;color:#fff}
+.pmeta{display:flex;align-items:center;gap:7px;margin-top:4px;flex-wrap:wrap}
+.ptit{font-size:12px;color:var(--m);display:flex;align-items:center;gap:4px}
+.pill{font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px}
+.pill.pts{background:rgba(108,99,255,.14);border:1px solid rgba(108,99,255,.28);color:#a78bfa}
+.ptiers{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;max-width:340px}
+.tb{display:flex;flex-direction:column;align-items:center;gap:2px;transition:.15s}
+.tb:hover{transform:translateY(-3px) scale(1.1)}
+.ti{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.ti img{width:17px;height:17px;object-fit:contain}
+.tl{font-size:9px;font-weight:800}
+.t-ht1,.t-lt1{background:rgba(251,146,60,.18);border:1px solid rgba(251,146,60,.45);box-shadow:0 0 8px rgba(251,146,60,.12)}
+.t-ht2,.t-lt2{background:rgba(250,204,21,.14);border:1px solid rgba(250,204,21,.38)}
+.t-ht3,.t-lt3{background:rgba(74,222,128,.13);border:1px solid rgba(74,222,128,.33)}
+.t-ht4,.t-lt4{background:rgba(34,211,238,.13);border:1px solid rgba(34,211,238,.3)}
+.t-ht5,.t-lt5{background:rgba(100,116,139,.11);border:1px solid rgba(100,116,139,.24)}
+.c-ht1,.c-lt1{color:#fb923c}.c-ht2,.c-lt2{color:#facc15}.c-ht3,.c-lt3{color:#4ade80}.c-ht4,.c-lt4{color:#22d3ee}.c-ht5,.c-lt5{color:#64748b}
+.loading,.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;color:var(--m);gap:14px;font-size:14px}
+.spin{width:38px;height:38px;border-radius:50%;border:3px solid var(--b);border-top-color:var(--acc);animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.pag{display:flex;justify-content:center;gap:5px;margin-top:22px;flex-wrap:wrap}
+.pgb{background:var(--s1);border:1px solid var(--b);color:var(--m);padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;font-family:inherit;min-width:38px;transition:.15s}
+.pgb:hover:not([disabled]){background:var(--acc);color:#fff;border-color:var(--acc);transform:translateY(-1px);box-shadow:0 4px 14px rgba(108,99,255,.35)}
+.pgb.on{background:var(--acc);color:#fff;border-color:var(--acc)}
 .pgb:disabled{opacity:.2;cursor:not-allowed}
-
-/* ═══ MODAL ════════════════════════════════ */
-.modal-bg{
-  display:none;position:fixed;inset:0;z-index:200;
-  background:rgba(0,0,0,.75);backdrop-filter:blur(6px);
-  align-items:center;justify-content:center;
-}
-.modal-bg.open{display:flex}
-.modal{
-  background:var(--s1);border:1px solid var(--b);
-  border-radius:16px;padding:32px;max-width:460px;width:90%;
-  animation:popIn .2s ease;
-}
-@keyframes popIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
-.modal h2{font-size:18px;font-weight:800;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
-.mclose{background:none;border:none;color:var(--m);font-size:20px;cursor:pointer;transition:.15s}
-.mclose:hover{color:#fff}
-.pts-tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
-.pts-tbl th{color:var(--m);font-weight:600;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:8px 12px;text-align:left}
-.pts-tbl td{padding:8px 12px;border-top:1px solid var(--b)}
-.pts-tbl tr:hover td{background:rgba(255,255,255,.02)}
-
-/* ═══ ADMIN ════════════════════════════════ */
-.admin-wrap{max-width:720px;margin:32px auto;padding:0 24px}
-.acard{background:var(--s1);border:1px solid var(--b);border-radius:14px;padding:28px;margin-bottom:14px}
-.acard h2{font-size:17px;font-weight:800;margin-bottom:22px;display:flex;align-items:center;gap:8px}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-.fgrp{display:flex;flex-direction:column;gap:5px}
-.fgrp label{font-size:11px;font-weight:700;color:var(--m);letter-spacing:.8px;text-transform:uppercase}
-.finp,.fsel{
-  background:var(--bg);border:1px solid var(--b);border-radius:8px;
-  padding:10px 13px;color:#fff;font-size:14px;
-  font-family:inherit;outline:none;transition:.2s;
-}
-.finp:focus,.fsel:focus{border-color:var(--acc)}
-.fsel option{background:var(--s1)}
-.fact{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-.sbtn{background:var(--acc);color:#fff;font-weight:700;font-size:14px;padding:10px 22px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;transition:.15s}
-.sbtn:hover{background:#5b52e0;transform:translateY(-1px)}
-.dbtn{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#f87171;font-weight:700;font-size:14px;padding:10px 22px;border-radius:8px;cursor:pointer;font-family:inherit;transition:.15s}
-.dbtn:hover{background:rgba(239,68,68,.22)}
-.astat{margin-top:12px;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;display:none}
-.astat.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ade80}
-.astat.err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#f87171}
-
-/* login */
-.login-box{max-width:360px;margin:80px auto;padding:0 24px;text-align:center}
-.login-box .icon{font-size:48px;margin-bottom:16px;display:block}
-.login-box h2{font-size:22px;font-weight:800;margin-bottom:6px}
-.login-box p{color:var(--m);font-size:13px;margin-bottom:24px}
-.linp{width:100%;background:var(--s1);border:1px solid var(--b);border-radius:10px;padding:13px 16px;color:#fff;font-size:15px;font-family:inherit;outline:none;margin-bottom:10px;transition:.2s}
-.linp:focus{border-color:var(--acc)}
-.lbtn{width:100%;background:var(--acc);color:#fff;font-weight:700;font-size:15px;padding:13px;border-radius:10px;border:none;cursor:pointer;font-family:inherit;transition:.15s}
-.lbtn:hover{background:#5b52e0}
-.lerr{color:#f87171;font-size:13px;margin-top:8px;display:none}
-
-/* admin table */
+.mbg{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);align-items:center;justify-content:center}
+.mbg.open{display:flex}
+.mdl{background:var(--s1);border:1px solid var(--b);border-radius:16px;padding:28px;max-width:440px;width:90%;animation:pi .2s ease}
+@keyframes pi{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.mh{font-size:17px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
+.mc2{background:none;border:none;color:var(--m);font-size:19px;cursor:pointer;transition:.15s}
+.mc2:hover{color:#fff}
+.pts-tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+.pts-tbl th{color:var(--m);font-weight:600;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:7px 10px;text-align:left}
+.pts-tbl td{padding:7px 10px;border-top:1px solid var(--b)}
+/* Profile */
+#view-profile{display:none}
+.prof-wrap{max-width:900px;margin:0 auto;padding:28px 22px;position:relative;z-index:1}
+.pback{display:flex;align-items:center;gap:8px;color:var(--m);font-size:13px;font-weight:600;cursor:pointer;margin-bottom:22px;transition:.15s;width:fit-content}
+.pback:hover{color:#fff}
+.phero{background:var(--s1);border:1px solid var(--b);border-radius:16px;padding:26px;display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;margin-bottom:14px;position:relative;overflow:hidden}
+.phero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--acc),var(--acc2),var(--gold))}
+.pskin{width:76px;height:76px;border-radius:11px;image-rendering:pixelated;border:2px solid rgba(108,99,255,.4)}
+.pname2{font-size:25px;font-weight:900;color:#fff}
+.ptitle2{font-size:14px;color:var(--m);margin-top:5px}
+.pstats{display:flex;gap:20px;flex-wrap:wrap}
+.pst{text-align:center}
+.pstn{font-size:22px;font-weight:900;color:#fff}
+.pstl{font-size:11px;color:var(--m);margin-top:2px;text-transform:uppercase;letter-spacing:.8px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:9px;margin-bottom:14px}
+.mcard{background:var(--s1);border:1px solid var(--b);border-radius:11px;padding:14px;display:flex;align-items:center;gap:11px;transition:.2s}
+.mcard:hover{border-color:rgba(108,99,255,.35);background:var(--s2)}
+.mcard img{width:26px;height:26px;object-fit:contain}
+.mcn{font-size:12px;color:var(--m);font-weight:600}
+.mct{font-size:17px;font-weight:900}
+.hcard{background:var(--s1);border:1px solid var(--b);border-radius:11px;padding:18px}
+.hcard h3{font-size:14px;font-weight:700;margin-bottom:12px}
+.hrow{display:flex;align-items:center;gap:11px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px}
+.hrow:last-child{border-bottom:none}
+/* Admin */
+#view-admin{display:none}
+.adw{max-width:700px;margin:26px auto;padding:0 22px}
+.ac{background:var(--s1);border:1px solid var(--b);border-radius:13px;padding:24px;margin-bottom:11px}
+.ac h2{font-size:16px;font-weight:800;margin-bottom:18px}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:9px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label{font-size:11px;font-weight:700;color:var(--m);letter-spacing:.8px;text-transform:uppercase}
+.fi,.fs{background:var(--bg);border:1px solid var(--b);border-radius:8px;padding:10px 12px;color:#fff;font-size:14px;font-family:inherit;outline:none;transition:.2s}
+.fi:focus,.fs:focus{border-color:var(--acc)}
+.fs option{background:var(--s1)}
+.fa{display:flex;gap:9px;margin-top:12px;flex-wrap:wrap}
+.sbtn{background:var(--acc);color:#fff;font-weight:700;font-size:14px;padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;transition:.15s}
+.sbtn:hover{background:#5b52e0}
+.dbtn{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.28);color:#f87171;font-weight:700;font-size:14px;padding:10px 20px;border-radius:8px;cursor:pointer;font-family:inherit;transition:.15s}
+.dbtn:hover{background:rgba(239,68,68,.2)}
+.ast{margin-top:10px;padding:9px 13px;border-radius:8px;font-size:13px;font-weight:600;display:none}
+.ast.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.22);color:#4ade80}
+.ast.err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.22);color:#f87171}
+.lbox{max-width:340px;margin:70px auto;padding:0 22px;text-align:center}
+.lbox .ico{font-size:44px;margin-bottom:14px;display:block}
+.lbox h2{font-size:21px;font-weight:800;margin-bottom:6px}
+.lbox p{color:var(--m);font-size:13px;margin-bottom:22px}
+.li{width:100%;background:var(--s1);border:1px solid var(--b);border-radius:10px;padding:12px 15px;color:#fff;font-size:15px;font-family:inherit;outline:none;margin-bottom:9px;transition:.2s}
+.li:focus{border-color:var(--acc)}
+.lb2{width:100%;background:var(--acc);color:#fff;font-weight:700;font-size:15px;padding:12px;border-radius:10px;border:none;cursor:pointer;font-family:inherit;transition:.15s}
+.lb2:hover{background:#5b52e0}
+.le{color:#f87171;font-size:13px;margin-top:7px;display:none}
 .atbl{width:100%;border-collapse:collapse;font-size:13px}
-.atbl th{color:var(--m);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.8px;padding:8px 12px;text-align:left}
-.atbl td{padding:8px 12px;border-top:1px solid var(--b)}
+.atbl th{color:var(--m);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.8px;padding:7px 10px;text-align:left}
+.atbl td{padding:7px 10px;border-top:1px solid var(--b)}
 .atbl tr:hover td{background:rgba(255,255,255,.02)}
-.edit-btn{background:rgba(108,99,255,.15);border:1px solid rgba(108,99,255,.3);color:#a78bfa;padding:3px 10px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:700;font-family:inherit;transition:.15s}
-.edit-btn:hover{background:rgba(108,99,255,.28)}
-
-/* ═══ IMPRESSUM ═══════════════════════════ */
-.legal{max-width:680px;margin:0 auto;padding:48px 24px}
-.legal h1{font-size:26px;font-weight:800;margin-bottom:28px}
-.legal h2{font-size:14px;font-weight:700;color:var(--acc2);margin:22px 0 8px;text-transform:uppercase;letter-spacing:.8px}
-.legal p{font-size:14px;color:#8888aa;line-height:1.7}
-.legal a{color:var(--acc)}
-
-/* ═══ FOOTER ═══════════════════════════════ */
-footer{text-align:center;padding:28px;color:#44445a;font-size:12px;border-top:1px solid rgba(255,255,255,.04);margin-top:48px;position:relative;z-index:1}
+.ebtn{background:rgba(108,99,255,.14);border:1px solid rgba(108,99,255,.28);color:#a78bfa;padding:3px 9px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:700;font-family:inherit;transition:.15s}
+.ebtn:hover{background:rgba(108,99,255,.25)}
+#view-legal{display:none}
+.leg{max-width:660px;margin:0 auto;padding:44px 22px;position:relative;z-index:1}
+.leg h1{font-size:24px;font-weight:800;margin-bottom:26px}
+.leg h2{font-size:13px;font-weight:700;color:var(--acc2);margin:20px 0 7px;text-transform:uppercase;letter-spacing:.8px}
+.leg p{font-size:14px;color:#8888aa;line-height:1.7}
+.leg a{color:var(--acc)}
+footer{text-align:center;padding:26px;color:#44445a;font-size:12px;border-top:1px solid rgba(255,255,255,.04);margin-top:44px;position:relative;z-index:1}
 footer a{color:var(--acc);text-decoration:none}
-
-@media(max-width:660px){
-  .pcard{grid-template-columns:44px 44px 1fr;gap:10px}
-  .ptiers{display:none}
-  header{padding:0 16px;gap:8px}
-  .h-right{gap:5px}
-}
+@media(max-width:640px){.pcard{grid-template-columns:42px 42px 1fr;gap:10px}.ptiers{display:none}.phero{grid-template-columns:auto 1fr}.pstats{display:none}}
 </style>
 </head>
 <body>
-
 <canvas id="cvs"></canvas>
-
-<!-- HEADER -->
 <header>
-  <a class="logo" href="#" onclick="return false">NPVP TIERS</a>
-  <div class="nav-tabs" id="ntabs"></div>
+  <div class="logo" onclick="showLB()">NPVP TIERS</div>
+  <div class="ntabs" id="ntabs"></div>
   <div class="h-right">
-    <button class="h-btn" onclick="document.getElementById('ptsm').classList.add('open')">ℹ️ Points</button>
-    <a class="h-btn discord" href="https://discord.gg/23WBMKYdnj" target="_blank">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.014.043.031.057a19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
+    <button class="hbtn" onclick="document.getElementById('pm').classList.add('open')">ℹ️ Points</button>
+    <a class="hbtn dc" href="https://discord.gg/23WBMKYdnj" target="_blank">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.014.043.031.057a19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
       Discord
     </a>
-    <button class="h-btn" onclick="showAdmin()" style="color:#f59e0b;border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.08)">⚙️</button>
-    <a href="#" onclick="showLegal();return false" style="color:var(--m);font-size:12px;text-decoration:none;padding:7px 8px">Impressum</a>
+    <button class="hbtn" onclick="showAdmin()" style="color:#f59e0b;border-color:rgba(245,158,11,.28);background:rgba(245,158,11,.07)">⚙️</button>
+    <a href="#" onclick="showLegal();return false" style="color:var(--m);font-size:12px;text-decoration:none;padding:6px 8px">Impressum</a>
   </div>
 </header>
 
-<!-- POINTS MODAL -->
-<div class="modal-bg" id="ptsm" onclick="if(event.target===this)this.classList.remove('open')">
-  <div class="modal">
-    <h2>🏅 Points System <button class="mclose" onclick="document.getElementById('ptsm').classList.remove('open')">✕</button></h2>
-    <p style="color:var(--m);font-size:13px;margin-bottom:12px">Points are awarded per mode based on your tier ranking:</p>
+<div class="mbg" id="pm" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="mdl">
+    <div class="mh">🏅 Points System <button class="mc2" onclick="document.getElementById('pm').classList.remove('open')">✕</button></div>
+    <p style="color:var(--m);font-size:13px;margin-bottom:10px">Overall ranking = total points. Tiebreak = best individual tier.</p>
     <table class="pts-tbl">
-      <tr><th>Tier</th><th>Points</th><th></th></tr>
-      <tr><td><b style="color:#fb923c">HT1</b></td><td>100 pts</td><td>🥇 Top</td></tr>
-      <tr><td><b style="color:#fb923c">LT1</b></td><td>90 pts</td><td></td></tr>
-      <tr><td><b style="color:#facc15">HT2</b></td><td>80 pts</td><td></td></tr>
-      <tr><td><b style="color:#facc15">LT2</b></td><td>70 pts</td><td></td></tr>
-      <tr><td><b style="color:#4ade80">HT3</b></td><td>60 pts</td><td></td></tr>
-      <tr><td><b style="color:#4ade80">LT3</b></td><td>50 pts</td><td></td></tr>
-      <tr><td><b style="color:#22d3ee">HT4</b></td><td>40 pts</td><td></td></tr>
-      <tr><td><b style="color:#22d3ee">LT4</b></td><td>30 pts</td><td></td></tr>
-      <tr><td><b style="color:#64748b">HT5</b></td><td>20 pts</td><td></td></tr>
-      <tr><td><b style="color:#64748b">LT5</b></td><td>10 pts</td><td></td></tr>
+      <tr><th>Tier</th><th>Pts</th><th>Tier</th><th>Pts</th></tr>
+      <tr><td><b style="color:#fb923c">HT1</b></td><td>100</td><td><b style="color:#fb923c">LT1</b></td><td>90</td></tr>
+      <tr><td><b style="color:#facc15">HT2</b></td><td>80</td><td><b style="color:#facc15">LT2</b></td><td>70</td></tr>
+      <tr><td><b style="color:#4ade80">HT3</b></td><td>60</td><td><b style="color:#4ade80">LT3</b></td><td>50</td></tr>
+      <tr><td><b style="color:#22d3ee">HT4</b></td><td>40</td><td><b style="color:#22d3ee">LT4</b></td><td>30</td></tr>
+      <tr><td><b style="color:#64748b">HT5</b></td><td>20</td><td><b style="color:#64748b">LT5</b></td><td>10</td></tr>
     </table>
-    <p style="color:var(--m);font-size:12px;margin-top:14px">👑 <b>Legend</b> 200+ · ⭐ <b>Master</b> 120+ · 💎 <b>Combat Ace</b> 60+ · 🔷 <b>Specialist</b> 20+</p>
+    <p style="color:var(--m);font-size:12px;margin-top:12px">👑 Legend 200+ · ⭐ Master 120+ · 💎 Ace 60+ · 🔷 Specialist 20+</p>
   </div>
 </div>
 
-<!-- LEADERBOARD (default view) -->
 <div id="view-lb">
   <div class="main">
-    <div class="search-row">
-      <div class="search-wrap">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input class="search-input" id="srch" placeholder="Search for a player..." oninput="onSearch()">
+    <div class="srow">
+      <div class="swrap">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="sinp" id="srch" placeholder="Search for a player..." oninput="onSearch()">
       </div>
-      <div class="count-chip"><span class="live-dot"></span><span id="cnt">Loading...</span></div>
+      <div class="chip"><span class="ldot"></span><span id="cnt">Loading...</span></div>
     </div>
     <div class="plist" id="plist"></div>
     <div class="pag" id="pag"></div>
   </div>
 </div>
 
-<!-- ADMIN VIEW -->
-<div id="view-admin" style="display:none">
+<div id="view-profile">
+  <div class="prof-wrap">
+    <div class="pback" onclick="showLB()">← Back to Rankings</div>
+    <div class="phero" id="phero"></div>
+    <div class="pgrid" id="pgrid"></div>
+    <div class="hcard" id="hcard" style="display:none">
+      <h3>📜 Match History</h3>
+      <div id="hlist"></div>
+    </div>
+  </div>
+</div>
+
+<div id="view-admin">
   <div id="adm-login">
-    <div class="login-box">
-      <span class="icon">🔐</span>
+    <div class="lbox">
+      <span class="ico">🔐</span>
       <h2>Owner Panel</h2>
-      <p>Authorized access only</p>
-      <input class="linp" type="password" id="adm-pw" placeholder="Enter password…" onkeydown="if(event.key==='Enter')doLogin()">
-      <button class="lbtn" onclick="doLogin()">Login</button>
-      <div class="lerr" id="adm-err">❌ Wrong password</div>
+      <p>Use <b>/ad-pw</b> in Discord for the current password</p>
+      <input class="li" type="password" id="apw" placeholder="Enter password..." onkeydown="if(event.key==='Enter')doLogin()">
+      <button class="lb2" onclick="doLogin()">Login</button>
+      <div class="le" id="aerr">❌ Wrong password</div>
     </div>
   </div>
   <div id="adm-panel" style="display:none">
-    <div class="admin-wrap">
-      <div class="acard">
+    <div class="adw">
+      <div class="ac">
         <h2>⚙️ Tier Management</h2>
-        <div class="frow">
-          <div class="fgrp"><label>Minecraft IGN</label><input class="finp" id="a-ign" placeholder="e.g. Steve123"></div>
-          <div class="fgrp"><label>Mode</label>
-            <select class="fsel" id="a-mode">
+        <div class="fr">
+          <div class="fg"><label>Minecraft IGN</label><input class="fi" id="a-i" placeholder="e.g. Steve123"></div>
+          <div class="fg"><label>Mode</label>
+            <select class="fs" id="a-m">
               <option value="Crystal">💎 Crystal</option><option value="Mace">🔨 Mace</option>
               <option value="Sword">⚔️ Sword</option><option value="Axe">🪓 Axe</option>
               <option value="UHC">🏔️ UHC</option><option value="NethPot">⚗️ NethPot</option>
@@ -386,54 +250,50 @@ footer a{color:var(--acc);text-decoration:none}
             </select>
           </div>
         </div>
-        <div class="frow">
-          <div class="fgrp"><label>Tier</label>
-            <select class="fsel" id="a-tier">
+        <div class="fr">
+          <div class="fg"><label>Tier</label>
+            <select class="fs" id="a-t">
               <option>HT1</option><option>LT1</option><option>HT2</option><option>LT2</option>
               <option>HT3</option><option>LT3</option><option>HT4</option><option>LT4</option>
               <option>HT5</option><option>LT5</option>
             </select>
           </div>
-          <div class="fgrp"><label>Discord ID (optional)</label><input class="finp" id="a-did" placeholder="123456789"></div>
+          <div class="fg"><label>Discord ID (opt.)</label><input class="fi" id="a-d" placeholder="123456789"></div>
         </div>
-        <div class="fact">
+        <div class="fa">
           <button class="sbtn" onclick="aSave()">💾 Save</button>
           <button class="dbtn" onclick="aDel()">🗑️ Delete</button>
-          <button onclick="aLogout()" style="margin-left:auto;background:var(--s2);border:1px solid var(--b);color:var(--m);padding:10px 18px;border-radius:8px;cursor:pointer;font-family:inherit;font-size:14px">Logout</button>
+          <button onclick="aOut()" style="margin-left:auto;background:var(--s2);border:1px solid var(--b);color:var(--m);padding:10px 16px;border-radius:8px;cursor:pointer;font-family:inherit;font-size:14px">Logout</button>
         </div>
-        <div class="astat" id="astat"></div>
+        <div class="ast" id="ast"></div>
       </div>
-      <div class="acard">
-        <h2>📋 All Tiers</h2>
-        <div id="atbl-wrap" style="margin-top:4px"></div>
-      </div>
+      <div class="ac"><h2>📋 All Tiers</h2><div id="atw" style="margin-top:4px"></div></div>
     </div>
   </div>
 </div>
 
-<!-- LEGAL VIEW -->
-<div id="view-legal" style="display:none">
-  <div class="legal">
+<div id="view-legal">
+  <div class="leg">
     <h1>Impressum</h1>
-    <h2>Information according to § 5 TMG</h2>
-    <p>NPvP Tiers — This website is a non-commercial private hobby project.</p>
+    <h2>Information § 5 TMG</h2>
+    <p>NPvP Tiers — Non-commercial private hobby project.</p>
     <h2>Contact</h2>
     <p>Discord: <a href="https://discord.gg/23WBMKYdnj" target="_blank">discord.gg/23WBMKYdnj</a></p>
     <h2>Disclaimer</h2>
-    <p>This is a private project with no commercial intent. Minecraft is a registered trademark of Mojang Studios / Microsoft Corporation. This website has no affiliation with Mojang or Microsoft. Player skins are loaded via the public Mojang API.</p>
+    <p>Private project, no commercial intent. Minecraft is a trademark of Mojang Studios / Microsoft. No affiliation with Mojang. Player skins loaded via public Mojang API.</p>
     <h2>Privacy</h2>
-    <p>This website stores no personal data. No cookies are set, no tracking is performed. Minecraft IGNs and tier data are processed as part of the tier testing system.</p>
-    <p style="margin-top:28px;color:var(--m)">Last updated: June 2026</p>
+    <p>No personal data stored. No cookies, no tracking.</p>
+    <p style="margin-top:26px;color:var(--m)">Last updated: June 2026</p>
   </div>
 </div>
 
 <footer>
-  <div style="margin-bottom:8px">
+  <div style="margin-bottom:7px">
     <a href="#" onclick="showLB();return false">Rankings</a> ·
     <a href="https://discord.gg/23WBMKYdnj" target="_blank">Discord</a> ·
     <a href="#" onclick="showLegal();return false">Impressum</a>
   </div>
-  © 2026 NPvP Tiers · Not affiliated with Mojang · Data synced live from Discord
+  © 2026 NPvP Tiers · Not affiliated with Mojang · Live data from Discord
 </footer>
 
 <script>
@@ -453,147 +313,94 @@ const TR={"HT1":0,"LT1":1,"HT2":2,"LT2":3,"HT3":4,"LT3":5,"HT4":6,"LT4":7,"HT5":
 const PM={"HT1":100,"LT1":90,"HT2":80,"LT2":70,"HT3":60,"LT3":50,"HT4":40,"LT4":30,"HT5":20,"LT5":10};
 const API="https://tierbot-production-0b7a.up.railway.app";
 const PER=20;
-const AH="a94c2b5c7e8d3f1a6b9e4c2d8f5a3e7b1c4d9f2a6e3b8c5d7f4a1e6b3c8d2f5a";
-
 let raw=[],view=[],srch=[],mode="all",pg=0,admKey="";
 
-/* ── Particles ─────────────────────────────────────── */
+// Particles
 (()=>{
-  const c=document.getElementById('cvs'),ctx=c.getContext('2d');
-  let pts=[];
-  const resize=()=>{c.width=innerWidth;c.height=innerHeight};
-  const init=()=>{pts=Array.from({length:80},()=>({
-    x:Math.random()*c.width,y:Math.random()*c.height,
-    r:Math.random()*1+.2,
-    a:Math.random()*.6+.1,da:(Math.random()-.5)*.005,
-    dx:(Math.random()-.5)*.12,dy:(Math.random()-.5)*.12,
-  }))};
-  const draw=()=>{
-    ctx.clearRect(0,0,c.width,c.height);
-    pts.forEach(p=>{
-      p.a+=p.da;if(p.a>.7||p.a<.05)p.da*=-1;
-      p.x=(p.x+p.dx+c.width)%c.width;p.y=(p.y+p.dy+c.height)%c.height;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(108,99,255,${p.a})`;ctx.fill();
-    });
-    requestAnimationFrame(draw);
-  };
-  resize();init();draw();
-  addEventListener('resize',()=>{resize();init()});
+  const c=document.getElementById('cvs'),ctx=c.getContext('2d');let pts=[];
+  const rsz=()=>{c.width=innerWidth;c.height=innerHeight};
+  const ini=()=>{pts=Array.from({length:70},()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*.9+.2,a:Math.random()*.5+.1,da:(Math.random()-.5)*.004,dx:(Math.random()-.5)*.1,dy:(Math.random()-.5)*.1}))};
+  const drw=()=>{ctx.clearRect(0,0,c.width,c.height);pts.forEach(p=>{p.a+=p.da;if(p.a>.6||p.a<.05)p.da*=-1;p.x=(p.x+p.dx+c.width)%c.width;p.y=(p.y+p.dy+c.height)%c.height;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(108,99,255,${p.a})`;ctx.fill()});requestAnimationFrame(drw)};
+  rsz();ini();drw();addEventListener('resize',()=>{rsz();ini()});
 })();
 
-/* ── Views ─────────────────────────────────────────── */
-function showLB(){
-  ['lb','admin','legal'].forEach(v=>document.getElementById('view-'+v).style.display='none');
-  document.getElementById('view-lb').style.display='block';
-  if(!raw.length)loadData();
-}
-function showAdmin(){
-  ['lb','admin','legal'].forEach(v=>document.getElementById('view-'+v).style.display='none');
-  document.getElementById('view-admin').style.display='block';
-}
-function showLegal(){
-  ['lb','admin','legal'].forEach(v=>document.getElementById('view-'+v).style.display='none');
-  document.getElementById('view-legal').style.display='block';
+// Views
+const VS=['lb','profile','admin','legal'];
+function show(v){VS.forEach(x=>document.getElementById('view-'+x).style.display='none');document.getElementById('view-'+v).style.display='block';scrollTo({top:0})}
+function showLB(){show('lb');if(!raw.length)load()}
+function showAdmin(){show('admin')}
+function showLegal(){show('legal')}
+
+// Load
+async function load(){
+  document.getElementById('plist').innerHTML='<div class="loading"><div class="spin"></div><span>Loading rankings...</span></div>';
+  try{const r=await fetch(API+'/tiers?t='+Date.now());raw=await r.json();applyMode()}
+  catch(e){document.getElementById('plist').innerHTML='<div class="empty">❌ Could not load data</div>';document.getElementById('cnt').textContent='Error'}
 }
 
-/* ── Load ──────────────────────────────────────────── */
-async function loadData(){
-  document.getElementById('plist').innerHTML='<div class="loading"><div class="spin"></div><span>Loading rankings…</span></div>';
-  try{
-    const r=await fetch(API+'/tiers?t='+Date.now());
-    raw=await r.json();
-    applyMode();
-  }catch(e){
-    document.getElementById('plist').innerHTML='<div class="empty">❌ Could not load data</div>';
-    document.getElementById('cnt').textContent='Error';
-  }
-}
-
-/* ── Mode tabs ─────────────────────────────────────── */
+// Tabs
 function buildTabs(){
   const c=document.getElementById('ntabs');
   const tabs=[{k:'all',l:'Overall',em:'🏆',i:null},...MODES.map(m=>({k:m,l:m,em:null,i:MK[m]}))];
-  c.innerHTML=tabs.map(t=>`
-    <button class="ntab ${t.k==='all'?'on':''}" onclick="setMode('${t.k}')" data-k="${t.k}">
-      ${t.i&&IC[t.i]?`<img src="${IC[t.i]}" alt="">`:`<span class="em">${t.em}</span>`}
-      ${t.l}
-    </button>`).join('');
+  c.innerHTML=tabs.map(t=>`<button class="ntab ${t.k==='all'?'on':''}" onclick="setMode('${t.k}')" data-k="${t.k}">${t.i&&IC[t.i]?`<img src="${IC[t.i]}" alt="">`:` <span class="em">${t.em}</span>`} ${t.l}</button>`).join('');
 }
 
-function setMode(m){
-  mode=m;pg=0;
-  document.querySelectorAll('.ntab').forEach(t=>t.classList.toggle('on',t.dataset.k===m));
-  applyMode();
-}
+function setMode(m){mode=m;pg=0;document.querySelectorAll('.ntab').forEach(t=>t.classList.toggle('on',t.dataset.k===m));applyMode()}
+
+// Sort: total points desc, tiebreak best tier
+function tPts(ign){return raw.filter(e=>e.ign.toLowerCase()===ign.toLowerCase()).reduce((s,e)=>s+(PM[e.tier]||0),0)}
+function bTier(ign){return Math.min(...raw.filter(e=>e.ign.toLowerCase()===ign.toLowerCase()).map(e=>TR[e.tier]??99),99)}
 
 function applyMode(){
   if(mode==='all'){
     const b={};
-    raw.forEach(e=>{
-      const k=e.ign.toLowerCase();
-      if(!b[k]||(TR[e.tier]??99)<(TR[b[k].best]??99)) b[k]={...e,best:e.tier};
+    raw.forEach(e=>{const k=e.ign.toLowerCase();if(!b[k])b[k]={...e}});
+    view=Object.values(b).sort((a,b2)=>{
+      const pa=tPts(a.ign),pb=tPts(b2.ign);
+      if(pa!==pb)return pb-pa;
+      return bTier(a.ign)-bTier(b2.ign);
     });
-    view=Object.values(b).sort((a,c)=>(TR[a.best]??99)-(TR[c.best]??99));
   }else{
     view=raw.filter(e=>e.mode===mode).sort((a,b)=>(TR[a.tier]??99)-(TR[b.tier]??99));
   }
   onSearch();
 }
 
-/* ── Search ────────────────────────────────────────── */
 function onSearch(){
   const q=document.getElementById('srch').value.toLowerCase();
   srch=q?view.filter(e=>e.ign.toLowerCase().includes(q)):view;
   pg=0;render();
 }
 
-/* ── Render ────────────────────────────────────────── */
-function title(pts){
-  if(pts>=200) return['👑','Legend'];
-  if(pts>=120) return['⭐','Master'];
-  if(pts>=60)  return['💎','Combat Ace'];
-  if(pts>=20)  return['🔷','Specialist'];
+function gTitle(p){
+  if(p>=200)return['👑','Legend'];if(p>=120)return['⭐','Master'];
+  if(p>=60)return['💎','Combat Ace'];if(p>=20)return['🔷','Specialist'];
   return['🔸','Newcomer'];
 }
-function pts(ign){return raw.filter(e=>e.ign.toLowerCase()===ign.toLowerCase()).reduce((s,e)=>s+(PM[e.tier]||0),0)}
 
 function render(){
-  const total=srch.length;
-  document.getElementById('cnt').textContent=total+' players';
+  document.getElementById('cnt').textContent=srch.length+' players';
   const slice=srch.slice(pg*PER,pg*PER+PER);
-  if(!slice.length){
-    document.getElementById('plist').innerHTML='<div class="empty">📭 No players found</div>';
-    document.getElementById('pag').innerHTML='';return;
-  }
+  if(!slice.length){document.getElementById('plist').innerHTML='<div class="empty">📭 No players found</div>';document.getElementById('pag').innerHTML='';return}
   document.getElementById('plist').innerHTML=slice.map((e,i)=>{
     const gi=pg*PER+i+1;
     const rc=gi===1?'g':gi===2?'s':gi===3?'b':'';
     const tc=gi<=3?`top${gi}`:'';
-    const skin=`https://mc-heads.net/avatar/${encodeURIComponent(e.ign)}/52`;
-    const p=pts(e.ign);
-    const[ti,tn]=title(p);
-    const ptiers=mode==='all'
+    const skin=`https://mc-heads.net/avatar/${encodeURIComponent(e.ign)}/48`;
+    const p=tPts(e.ign);
+    const[ti,tn]=gTitle(p);
+    const pt=mode==='all'
       ?raw.filter(x=>x.ign.toLowerCase()===e.ign.toLowerCase()).sort((a,b)=>MODES.indexOf(a.mode)-MODES.indexOf(b.mode))
       :[e];
-    const th=ptiers.map(t2=>{
+    const th=pt.map(t2=>{
       const ic=MK[t2.mode]&&IC[MK[t2.mode]]?`<img src="${IC[MK[t2.mode]]}" alt="">`:'';
       const cl=t2.tier.toLowerCase();
-      return`<div class="tbadge" title="${t2.mode}: ${t2.tier}">
-        <div class="ticon t-${cl}">${ic}</div>
-        <span class="tlbl c-${cl}">${t2.tier}</span>
-      </div>`;
+      return`<div class="tb" title="${t2.mode}: ${t2.tier}"><div class="ti t-${cl}">${ic}</div><span class="tl c-${cl}">${t2.tier}</span></div>`;
     }).join('');
-    return`<div class="pcard ${tc}">
-      <div class="rank ${rc}">${gi<=3?['🥇','🥈','🥉'][gi-1]:gi+'.'}</div>
-      <div class="avatar"><img src="${skin}" alt="${e.ign}" onerror="this.src='https://mc-heads.net/avatar/MHF_Steve/52'"></div>
-      <div>
-        <div class="pname">${e.ign}</div>
-        <div class="pmeta">
-          <span class="ptitle">${ti} ${tn}</span>
-          <span class="ppill pts">${p} pts</span>
-        </div>
-      </div>
+    return`<div class="pcard ${tc}" onclick="openProfile('${e.ign.replace(/'/g,"\\'")}')">
+      <div class="rnk ${rc}">${gi<=3?['🥇','🥈','🥉'][gi-1]:gi+'.'}</div>
+      <div class="avt"><img src="${skin}" alt="${e.ign}" onerror="this.src='https://mc-heads.net/avatar/MHF_Steve/48'"></div>
+      <div><div class="pnm">${e.ign}</div><div class="pmeta"><span class="ptit">${ti} ${tn}</span><span class="pill pts">${p} pts</span></div></div>
       <div class="ptiers">${th}</div>
     </div>`;
   }).join('');
@@ -603,107 +410,77 @@ function render(){
 function renderPag(){
   const tot=Math.ceil(srch.length/PER);
   const p=document.getElementById('pag');
-  if(tot<=1){p.innerHTML='';return;}
-  let h=`<button class="pgb" onclick="goPg(${pg-1})" ${pg===0?'disabled':''}>◀</button>`;
+  if(tot<=1){p.innerHTML='';return}
+  let h=`<button class="pgb" onclick="goP(${pg-1})" ${pg===0?'disabled':''}>◀</button>`;
   for(let i=0;i<tot;i++){
-    if(tot>7&&i!==0&&i!==tot-1&&Math.abs(i-pg)>2){if(i===pg-3||i===pg+3)h+='<span style="color:#444">…</span>';continue;}
-    h+=`<button class="pgb ${i===pg?'on':''}" onclick="goPg(${i})">${i+1}</button>`;
+    if(tot>7&&i!==0&&i!==tot-1&&Math.abs(i-pg)>2){if(i===pg-3||i===pg+3)h+='<span style="color:#444">…</span>';continue}
+    h+=`<button class="pgb ${i===pg?'on':''}" onclick="goP(${i})">${i+1}</button>`;
   }
-  h+=`<button class="pgb" onclick="goPg(${pg+1})" ${pg===tot-1?'disabled':''}>▶</button>`;
+  h+=`<button class="pgb" onclick="goP(${pg+1})" ${pg===tot-1?'disabled':''}>▶</button>`;
   p.innerHTML=h;
 }
+function goP(p2){const tot=Math.ceil(srch.length/PER);pg=Math.max(0,Math.min(tot-1,p2));render();scrollTo({top:0,behavior:'smooth'})}
 
-function goPg(p2){
-  const tot=Math.ceil(srch.length/PER);
-  pg=Math.max(0,Math.min(tot-1,p2));
-  render();scrollTo({top:0,behavior:'smooth'});
+// Profile
+function openProfile(ign){
+  show('profile');
+  const p=tPts(ign);
+  const[ti,tn]=gTitle(p);
+  const pt=raw.filter(e=>e.ign.toLowerCase()===ign.toLowerCase());
+  const skin=`https://mc-heads.net/avatar/${encodeURIComponent(ign)}/76`;
+  const bt=pt.slice().sort((a,b)=>(TR[a.tier]??99)-(TR[b.tier]??99))[0];
+  document.getElementById('phero').innerHTML=`
+    <img class="pskin" src="${skin}" alt="${ign}" onerror="this.src='https://mc-heads.net/avatar/MHF_Steve/76'">
+    <div><div class="pname2">${ign}</div><div class="ptitle2">${ti} <b style="color:#fff">${tn}</b></div></div>
+    <div class="pstats">
+      <div class="pst"><div class="pstn" style="color:#a78bfa">${p}</div><div class="pstl">Points</div></div>
+      <div class="pst"><div class="pstn">${pt.length}</div><div class="pstl">Modes</div></div>
+      <div class="pst"><div class="pstn" style="color:#fb923c">${bt?bt.tier:'-'}</div><div class="pstl">Best Tier</div></div>
+    </div>`;
+  document.getElementById('pgrid').innerHTML=MODES.map(m=>{
+    const en=raw.find(e=>e.ign.toLowerCase()===ign.toLowerCase()&&e.mode===m);
+    const ico=MK[m]&&IC[MK[m]]?`<img src="${IC[MK[m]]}" alt="${m}" style="width:26px;height:26px;object-fit:contain">`:'';
+    if(en){
+      const cl=en.tier.toLowerCase();
+      return`<div class="mcard"><div class="ti t-${cl}" style="flex-shrink:0;width:36px;height:36px">${ico}</div><div><div class="mcn">${m}</div><div class="mct c-${cl}">${en.tier}</div></div><div style="margin-left:auto;font-size:12px;color:var(--m)">${PM[en.tier]||0} pts</div></div>`;
+    }
+    return`<div class="mcard" style="opacity:.3"><div style="width:36px;height:36px;border-radius:50%;background:var(--s2);border:1px solid var(--b);display:flex;align-items:center;justify-content:center;flex-shrink:0">${ico}</div><div><div class="mcn">${m}</div><div style="font-size:13px;color:var(--m)">—</div></div></div>`;
+  }).join('');
 }
 
-/* ── Admin ─────────────────────────────────────────── */
-async function hashPw(pw){
-  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(pw));
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-}
+// Admin
 async function doLogin(){
-  const pw=document.getElementById('adm-pw').value;
-  const h=await hashPw(pw);
-  if(h===AH){
-    admKey=pw;
-    document.getElementById('adm-login').style.display='none';
-    document.getElementById('adm-panel').style.display='block';
-    loadAList();
-  }else{
-    document.getElementById('adm-err').style.display='block';
-  }
-}
-function aLogout(){
-  admKey='';
-  document.getElementById('adm-login').style.display='block';
-  document.getElementById('adm-panel').style.display='none';
-  document.getElementById('adm-pw').value='';
-}
-async function aSave(){
-  const ign=document.getElementById('a-ign').value.trim();
-  const mode=document.getElementById('a-mode').value;
-  const tier=document.getElementById('a-tier').value;
-  const did=document.getElementById('a-did').value.trim()||'0';
-  if(!ign)return aStatus('❌ Enter IGN!','err');
+  const pw=document.getElementById('apw').value;
   try{
-    const r=await fetch(API+'/admin/settier',{method:'POST',
-      headers:{'Content-Type':'application/json','X-API-Secret':admKey},
-      body:JSON.stringify({ign,mode,tier,discord_id:parseInt(did)||0})});
-    const d=await r.json();
-    if(d.ok){aStatus('✅ Saved!','ok');loadAList();loadData();}
-    else aStatus('❌ '+d.error,'err');
-  }catch(e){aStatus('❌ '+e.message,'err');}
+    const r=await fetch(API+'/admin/verify',{method:'POST',headers:{'Content-Type':'application/json','X-API-Secret':pw},body:JSON.stringify({})});
+    if(r.ok){admKey=pw;document.getElementById('adm-login').style.display='none';document.getElementById('adm-panel').style.display='block';loadAList()}
+    else document.getElementById('aerr').style.display='block';
+  }catch(e){document.getElementById('aerr').style.display='block'}
+}
+function aOut(){admKey='';document.getElementById('adm-login').style.display='block';document.getElementById('adm-panel').style.display='none';document.getElementById('apw').value=''}
+async function aSave(){
+  const ign=document.getElementById('a-i').value.trim(),mode=document.getElementById('a-m').value,tier=document.getElementById('a-t').value,did=document.getElementById('a-d').value.trim()||'0';
+  if(!ign)return aS('❌ Enter IGN!','err');
+  try{const r=await fetch(API+'/admin/settier',{method:'POST',headers:{'Content-Type':'application/json','X-API-Secret':admKey},body:JSON.stringify({ign,mode,tier,discord_id:parseInt(did)||0})});const d=await r.json();if(d.ok){aS('✅ Saved!','ok');loadAList();load()}else aS('❌ '+d.error,'err')}
+  catch(e){aS('❌ '+e.message,'err')}
 }
 async function aDel(){
-  const ign=document.getElementById('a-ign').value.trim();
-  const mode=document.getElementById('a-mode').value;
-  if(!ign)return aStatus('❌ Enter IGN!','err');
+  const ign=document.getElementById('a-i').value.trim(),mode=document.getElementById('a-m').value;
+  if(!ign)return aS('❌ Enter IGN!','err');
   if(!confirm(`Delete tier for ${ign} in ${mode}?`))return;
-  try{
-    const r=await fetch(API+'/admin/deletetier',{method:'POST',
-      headers:{'Content-Type':'application/json','X-API-Secret':admKey},
-      body:JSON.stringify({ign,mode})});
-    const d=await r.json();
-    if(d.ok){aStatus('✅ Deleted!','ok');loadAList();loadData();}
-    else aStatus('❌ '+d.error,'err');
-  }catch(e){aStatus('❌ '+e.message,'err');}
+  try{const r=await fetch(API+'/admin/deletetier',{method:'POST',headers:{'Content-Type':'application/json','X-API-Secret':admKey},body:JSON.stringify({ign,mode})});const d=await r.json();if(d.ok){aS('✅ Deleted!','ok');loadAList();load()}else aS('❌ '+d.error,'err')}
+  catch(e){aS('❌ '+e.message,'err')}
 }
 async function loadAList(){
-  try{
-    const r=await fetch(API+'/tiers?t='+Date.now());
-    const data=await r.json();
-    const w=document.getElementById('atbl-wrap');
-    if(!data.length){w.innerHTML='<div style="color:var(--m);font-size:13px">No tiers saved yet.</div>';return;}
-    w.innerHTML=`<table class="atbl">
-      <tr><th>IGN</th><th>Mode</th><th>Tier</th><th>Action</th></tr>
-      ${data.map(e=>`<tr>
-        <td style="color:#fff;font-weight:600">${e.ign}</td>
-        <td style="color:var(--m)">${e.mode}</td>
-        <td><span class="tlbl c-${e.tier.toLowerCase()}">${e.tier}</span></td>
-        <td><button class="edit-btn" onclick="qEdit('${e.ign}','${e.mode}','${e.tier}')">Edit</button></td>
-      </tr>`).join('')}
-    </table>`;
-  }catch(e){}
+  try{const r=await fetch(API+'/tiers?t='+Date.now());const data=await r.json();const w=document.getElementById('atw');
+  if(!data.length){w.innerHTML='<div style="color:var(--m);font-size:13px">No tiers saved yet.</div>';return}
+  w.innerHTML=`<table class="atbl"><tr><th>IGN</th><th>Mode</th><th>Tier</th><th>Action</th></tr>${data.map(e=>`<tr><td style="color:#fff;font-weight:600">${e.ign}</td><td style="color:var(--m)">${e.mode}</td><td><span class="tl c-${e.tier.toLowerCase()}">${e.tier}</span></td><td><button class="ebtn" onclick="qE('${e.ign}','${e.mode}','${e.tier}')">Edit</button></td></tr>`).join('')}</table>`}
+  catch(e){}
 }
-function qEdit(i,m,t){
-  document.getElementById('a-ign').value=i;
-  document.getElementById('a-mode').value=m;
-  document.getElementById('a-tier').value=t;
-  scrollTo({top:0,behavior:'smooth'});
-}
-function aStatus(msg,type){
-  const el=document.getElementById('astat');
-  el.style.display='block';el.className='astat '+type;el.textContent=msg;
-  setTimeout(()=>el.style.display='none',3000);
-}
+function qE(i,m,t){document.getElementById('a-i').value=i;document.getElementById('a-m').value=m;document.getElementById('a-t').value=t;scrollTo({top:0,behavior:'smooth'})}
+function aS(msg,type){const el=document.getElementById('ast');el.style.display='block';el.className='ast '+type;el.textContent=msg;setTimeout(()=>el.style.display='none',3000)}
 
-/* ── Init ──────────────────────────────────────────── */
-buildTabs();
-showLB();
-setInterval(loadData,60000);
+buildTabs();showLB();setInterval(load,60000);
 </script>
 </body>
 </html>
