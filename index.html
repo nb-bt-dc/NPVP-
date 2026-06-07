@@ -55,7 +55,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(12,12,15,.92);backdrop-f
 .pcard:nth-child(1){animation-delay:.02s}.pcard:nth-child(2){animation-delay:.05s}.pcard:nth-child(3){animation-delay:.08s}
 .pcard:nth-child(4){animation-delay:.11s}.pcard:nth-child(5){animation-delay:.14s}.pcard:nth-child(6){animation-delay:.17s}
 .rnk{text-align:center;font-size:19px;font-weight:900;color:var(--m)}
-.rnk.g{font-size:26px;filter:drop-shadow(0 0 10px var(--gold));animation:fl 2.5s ease-in-out infinite}
+.rnk.g{font-size:26px;filter:drop-shadow(0 0 10px var(--gold))}
 .rnk.s{font-size:22px;filter:drop-shadow(0 0 8px var(--silver))}
 .rnk.b{font-size:22px;filter:drop-shadow(0 0 8px var(--bronze))}
 @keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
@@ -172,19 +172,19 @@ footer a{color:var(--acc);text-decoration:none}
   <div class="logo" onclick="showLB()">NPVP TIERS</div>
   <div class="ntabs" id="ntabs"></div>
   <div class="h-right">
-    <button class="hbtn" onclick="document.getElementById('pm').classList.add('open')">ℹ️ Points</button>
+    <button class="hbtn" onclick="document.getElementById('pm').classList.add('open')">Points</button>
     <a class="hbtn dc" href="https://discord.gg/23WBMKYdnj" target="_blank">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.014.043.031.057a19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
       Discord
     </a>
-    <button class="hbtn" onclick="showAdmin()" style="color:#f59e0b;border-color:rgba(245,158,11,.28);background:rgba(245,158,11,.07)">⚙️</button>
+    <button class="hbtn" onclick="showAdmin()" style="color:#f59e0b;border-color:rgba(245,158,11,.28);background:rgba(245,158,11,.07)">Admin</button>
     <a href="#" onclick="showLegal();return false" style="color:var(--m);font-size:12px;text-decoration:none;padding:6px 8px">Impressum</a>
   </div>
 </header>
 
 <div class="mbg" id="pm" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="mdl">
-    <div class="mh">🏅 Points System <button class="mc2" onclick="document.getElementById('pm').classList.remove('open')">✕</button></div>
+    <div class="mh">Points System <button class="mc2" onclick="document.getElementById('pm').classList.remove('open')">✕</button></div>
     <p style="color:var(--m);font-size:13px;margin-bottom:10px">Overall ranking = total points. Tiebreak = best individual tier.</p>
     <table class="pts-tbl">
       <tr><th>Tier</th><th>Pts</th><th>Tier</th><th>Pts</th></tr>
@@ -194,7 +194,7 @@ footer a{color:var(--acc);text-decoration:none}
       <tr><td><b style="color:#22d3ee">HT4</b></td><td>40</td><td><b style="color:#22d3ee">LT4</b></td><td>30</td></tr>
       <tr><td><b style="color:#64748b">HT5</b></td><td>20</td><td><b style="color:#64748b">LT5</b></td><td>10</td></tr>
     </table>
-    <p style="color:var(--m);font-size:12px;margin-top:12px">👑 Legend 200+ · ⭐ Master 120+ · 💎 Ace 60+ · 🔷 Specialist 20+</p>
+    <p style="color:var(--m);font-size:12px;margin-top:12px">Legend 200+ · ⭐ Master 120+ · 💎 Ace 60+ · 🔷 Specialist 20+</p>
   </div>
 </div>
 
@@ -205,7 +205,7 @@ footer a{color:var(--acc);text-decoration:none}
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         <input class="sinp" id="srch" placeholder="Search for a player..." oninput="onSearch()">
       </div>
-      <div class="chip"><span class="ldot"></span><span id="cnt">Loading...</span></div>
+      <div class="chip"><span id="cnt">Loading...</span></div>
     </div>
     <div class="plist" id="plist"></div>
     <div class="pag" id="pag"></div>
@@ -218,7 +218,7 @@ footer a{color:var(--acc);text-decoration:none}
     <div class="phero" id="phero"></div>
     <div class="pgrid" id="pgrid"></div>
     <div class="hcard" id="hcard" style="display:none">
-      <h3>📜 Match History</h3>
+      <h3>Match History</h3>
       <div id="hlist"></div>
     </div>
   </div>
@@ -232,13 +232,13 @@ footer a{color:var(--acc);text-decoration:none}
       <p>Use <b>/ad-pw</b> in Discord for the current password</p>
       <input class="li" type="password" id="apw" placeholder="Enter password..." onkeydown="if(event.key==='Enter')doLogin()">
       <button class="lb2" onclick="doLogin()">Login</button>
-      <div class="le" id="aerr">❌ Wrong password</div>
+      <div class="le" id="aerr">Wrong password</div>
     </div>
   </div>
   <div id="adm-panel" style="display:none">
     <div class="adw">
       <div class="ac">
-        <h2>⚙️ Tier Management</h2>
+        <h2>Tier Management</h2>
         <div class="fr">
           <div class="fg"><label>Minecraft IGN</label><input class="fi" id="a-i" placeholder="e.g. Steve123"></div>
           <div class="fg"><label>Mode</label>
@@ -261,13 +261,13 @@ footer a{color:var(--acc);text-decoration:none}
           <div class="fg"><label>Discord ID (opt.)</label><input class="fi" id="a-d" placeholder="123456789"></div>
         </div>
         <div class="fa">
-          <button class="sbtn" onclick="aSave()">💾 Save</button>
-          <button class="dbtn" onclick="aDel()">🗑️ Delete</button>
+          <button class="sbtn" onclick="aSave()">Save</button>
+          <button class="dbtn" onclick="aDel()">Delete</button>
           <button onclick="aOut()" style="margin-left:auto;background:var(--s2);border:1px solid var(--b);color:var(--m);padding:10px 16px;border-radius:8px;cursor:pointer;font-family:inherit;font-size:14px">Logout</button>
         </div>
         <div class="ast" id="ast"></div>
       </div>
-      <div class="ac"><h2>📋 All Tiers</h2><div id="atw" style="margin-top:4px"></div></div>
+      <div class="ac"><h2>All Tiers</h2><div id="atw" style="margin-top:4px"></div></div>
     </div>
   </div>
 </div>
@@ -335,14 +335,14 @@ function showLegal(){show('legal')}
 async function load(){
   document.getElementById('plist').innerHTML='<div class="loading"><div class="spin"></div><span>Loading rankings...</span></div>';
   try{const r=await fetch(API+'/tiers?t='+Date.now());raw=await r.json();applyMode()}
-  catch(e){document.getElementById('plist').innerHTML='<div class="empty">❌ Could not load data</div>';document.getElementById('cnt').textContent='Error'}
+  catch(e){document.getElementById('plist').innerHTML='<div class="empty">Could not load data</div>';document.getElementById('cnt').textContent='Error'}
 }
 
 // Tabs
 function buildTabs(){
   const c=document.getElementById('ntabs');
-  const tabs=[{k:'all',l:'Overall',em:'🏆',i:null},...MODES.map(m=>({k:m,l:m,em:null,i:MK[m]}))];
-  c.innerHTML=tabs.map(t=>`<button class="ntab ${t.k==='all'?'on':''}" onclick="setMode('${t.k}')" data-k="${t.k}">${t.i&&IC[t.i]?`<img src="${IC[t.i]}" alt="">`:` <span class="em">${t.em}</span>`} ${t.l}</button>`).join('');
+  const tabs=[{k:'all',l:'Overall',em:'',i:null},...MODES.map(m=>({k:m,l:m,em:null,i:MK[m]}))];
+  c.innerHTML=tabs.map(t=>`<button class="ntab ${t.k==='all'?'on':''}" onclick="setMode('${t.k}')" data-k="${t.k}">${t.i&&IC[t.i]?`<img src="${IC[t.i]}" alt="">`:``} ${t.l}</button>`).join('');
 }
 
 function setMode(m){mode=m;pg=0;document.querySelectorAll('.ntab').forEach(t=>t.classList.toggle('on',t.dataset.k===m));applyMode()}
@@ -373,15 +373,15 @@ function onSearch(){
 }
 
 function gTitle(p){
-  if(p>=200)return['👑','Legend'];if(p>=120)return['⭐','Master'];
-  if(p>=60)return['💎','Combat Ace'];if(p>=20)return['🔷','Specialist'];
-  return['🔸','Newcomer'];
+  if(p>=200)return['','Legend'];if(p>=120)return['','Master'];
+  if(p>=60)return['','Combat Ace'];if(p>=20)return['','Specialist'];
+  return['','Newcomer'];
 }
 
 function render(){
   document.getElementById('cnt').textContent=srch.length+' players';
   const slice=srch.slice(pg*PER,pg*PER+PER);
-  if(!slice.length){document.getElementById('plist').innerHTML='<div class="empty">📭 No players found</div>';document.getElementById('pag').innerHTML='';return}
+  if(!slice.length){document.getElementById('plist').innerHTML='<div class="empty">No players found</div>';document.getElementById('pag').innerHTML='';return}
   document.getElementById('plist').innerHTML=slice.map((e,i)=>{
     const gi=pg*PER+i+1;
     const rc=gi===1?'g':gi===2?'s':gi===3?'b':'';
@@ -398,7 +398,7 @@ function render(){
       return`<div class="tb" title="${t2.mode}: ${t2.tier}"><div class="ti t-${cl}">${ic}</div><span class="tl c-${cl}">${t2.tier}</span></div>`;
     }).join('');
     return`<div class="pcard ${tc}" onclick="openProfile('${e.ign.replace(/'/g,"\\'")}')">
-      <div class="rnk ${rc}">${gi<=3?['🥇','🥈','🥉'][gi-1]:gi+'.'}</div>
+      <div class="rnk ${rc}">${gi}.</div>
       <div class="avt"><img src="${skin}" alt="${e.ign}" onerror="this.src='https://mc-heads.net/avatar/MHF_Steve/48'"></div>
       <div><div class="pnm">${e.ign}</div><div class="pmeta"><span class="ptit">${ti} ${tn}</span><span class="pill pts">${p} pts</span></div></div>
       <div class="ptiers">${th}</div>
@@ -460,15 +460,15 @@ async function doLogin(){
 function aOut(){admKey='';document.getElementById('adm-login').style.display='block';document.getElementById('adm-panel').style.display='none';document.getElementById('apw').value=''}
 async function aSave(){
   const ign=document.getElementById('a-i').value.trim(),mode=document.getElementById('a-m').value,tier=document.getElementById('a-t').value,did=document.getElementById('a-d').value.trim()||'0';
-  if(!ign)return aS('❌ Enter IGN!','err');
-  try{const r=await fetch(API+'/admin/settier',{method:'POST',headers:{'Content-Type':'application/json','X-API-Secret':admKey},body:JSON.stringify({ign,mode,tier,discord_id:parseInt(did)||0})});const d=await r.json();if(d.ok){aS('✅ Saved!','ok');loadAList();load()}else aS('❌ '+d.error,'err')}
+  if(!ign)return aS('Enter IGN!','err');
+  try{const r=await fetch(API+'/admin/settier',{method:'POST',headers:{'Content-Type':'application/json','X-API-Secret':admKey},body:JSON.stringify({ign,mode,tier,discord_id:parseInt(did)||0})});const d=await r.json();if(d.ok){aS('Saved!','ok');loadAList();load()}else aS('❌ '+d.error,'err')}
   catch(e){aS('❌ '+e.message,'err')}
 }
 async function aDel(){
   const ign=document.getElementById('a-i').value.trim(),mode=document.getElementById('a-m').value;
-  if(!ign)return aS('❌ Enter IGN!','err');
+  if(!ign)return aS('Enter IGN!','err');
   if(!confirm(`Delete tier for ${ign} in ${mode}?`))return;
-  try{const r=await fetch(API+'/admin/deletetier',{method:'POST',headers:{'Content-Type':'application/json','X-API-Secret':admKey},body:JSON.stringify({ign,mode})});const d=await r.json();if(d.ok){aS('✅ Deleted!','ok');loadAList();load()}else aS('❌ '+d.error,'err')}
+  try{const r=await fetch(API+'/admin/deletetier',{method:'POST',headers:{'Content-Type':'application/json','X-API-Secret':admKey},body:JSON.stringify({ign,mode})});const d=await r.json();if(d.ok){aS('Deleted!','ok');loadAList();load()}else aS('❌ '+d.error,'err')}
   catch(e){aS('❌ '+e.message,'err')}
 }
 async function loadAList(){
